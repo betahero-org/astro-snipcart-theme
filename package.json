@@ -1,6 +1,6 @@
 {
   "name": "@betahero-org/astro-snipcart-theme",
-  "description": "",
+  "description": "This is [an unofficial template](#how-is-this-different-from-the-official-component-template) meant to ease the development of components for [Astro](https://astro.build/) that are intended for distribution. It does so by providing you with:",
   "version": "0.1.0",
   "keywords": [
     "astro-component"
@@ -49,5 +49,14 @@
     "test": "mocha --parallel --timeout 15000",
     "format": "prettier -w .",
     "lint": "eslint . --ext .ts,.js"
-  }
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/betahero-org/astro-snipcart-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/betahero-org/astro-snipcart-theme/issues"
+  },
+  "homepage": "https://github.com/betahero-org/astro-snipcart-theme#readme"
 }
