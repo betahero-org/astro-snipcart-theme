@@ -36,10 +36,10 @@ const style = clsx(
         'text-red-500': tone === 'attention',
         'text-amber-400': tone === 'caution',
         'text-emerald-700': tone === 'positive',
-        'text-black': tone === 'neutral',
+        'text-dark dark:text-white': tone === 'neutral',
         'text-gray-500': tone === 'passive',
         'text-gray-700': tone === 'informational',
-        'text-white': tone === 'none',
+        'text-white dark:text-dark': tone === 'none',
 
         'tracking-normal': tracking === 'normal',
         'tracking-tight': tracking === 'tight',
