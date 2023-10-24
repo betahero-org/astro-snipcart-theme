@@ -1,0 +1,31 @@
+---
+import Stack from './Stack.astro';
+import ProductGrid from './ProductGrid.astro';
+
+import Header from './Header.astro';
+import Hero from './Hero.astro';
+import Banner from './Banner.astro';
+// import ProductCard from './ProductCard.astro';
+// import { ProductCard } from './types';
+
+export interface Props {
+    readonly title: string;
+    readonly description: string;
+    readonly banner?: string;
+}
+const { title, description, banner } = Astro.props as Props;
+// TODO: Page title and description
+---
+<div class="container mx-auto max-w-7xl px-3 sm:px-6">
+    <Banner message={ banner } />
+    <Header />
+    <slot />
+    <footer class="bg-gray-800 h-40 flex flex-col gap-1 mb-4 mt-52 font-thin text-center text-white">
+        <p>Page last built { new Date().toLocaleDateString('en-GB') }</p>
+        <p>
+            <a href="https://github.com/lloydjatkinson/astro-snipcart" target="_blank">
+                Astro Snipcart by @lloydjatkinson
+            </a>
+        </p>
+    </footer>
+</div>

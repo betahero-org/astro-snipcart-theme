@@ -1,0 +1,66 @@
+---
+import clsx from 'clsx';
+
+import { Element, Breakpoint, Direction, JustifyContent, Wrap } from './types';
+
+export type Props = Element & {
+    readonly gap?: Breakpoint;
+    readonly direction?: Direction;
+    readonly justfiyContent?: JustifyContent;
+    readonly wrap?: Wrap;
+};
+
+const {
+    as: Element = 'div',
+    gap = {
+        mobile: 'small',
+        tablet: 'medium',
+        desktop: 'xlarge',
+    },
+    direction = 'vertical',
+    justfiyContent = 'start',
+    wrap = 'none',
+} = Astro.props as Props;
+
+const layoutClasses = clsx(
+    'flex',
+    {
+        // TODO: We need to make all properties responsive like gap is.
+        // This would then allow the product name and product price to be flex col/row responsive (ProductCard.astro).
+        'flex-row': direction === 'horizontal',
+        'flex-col': direction === 'vertical',
+
+        'justify-start': justfiyContent === 'start',
+        'justify-end': justfiyContent === 'end',
+        'justify-center': justfiyContent === 'center',
+        'justify-between': justfiyContent === 'between',
+        'justify-around': justfiyContent === 'around',
+        'justify-evenly': justfiyContent === 'evenly',
+
+        'flex-wrap': wrap === 'wrap',
+        'flex-nowrap': wrap === 'none',
+        'flex-wrap-reverse': wrap === 'reverse',
+
+        'gap-1': gap.mobile === 'xsmall',
+        'gap-3': gap.mobile === 'small',
+        'gap-4': gap.mobile === 'medium',
+        'gap-10': gap.mobile === 'large',
+        'gap-16': gap.mobile === 'xlarge',
+
+        'md:gap-1': gap.tablet === 'xsmall',
+        'md:gap-3': gap.tablet === 'small',
+        'md:gap-4': gap.tablet === 'medium',
+        'md:gap-10': gap.tablet === 'large',
+        'md:gap-16': gap.tablet === 'xlarge',
+
+        'lg:gap-1': gap.desktop === 'xsmall',
+        'lg:gap-3': gap.desktop === 'small',
+        'lg:gap-4': gap.desktop === 'medium',
+        'lg:gap-10': gap.desktop === 'large',
+        'lg:gap-16': gap.desktop === 'xlarge',        
+    }
+);
+---
+<Element class={ layoutClasses }>
+    <slot />
+</Element>

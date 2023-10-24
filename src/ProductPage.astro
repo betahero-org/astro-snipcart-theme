@@ -1,0 +1,53 @@
+---
+import { SnipcartProduct, ProductMeta, SnipcartProductWithProductMeta } from '@lloydjatkinson/astro-snipcart';
+import { Product } from '@lloydjatkinson/astro-snipcart/astro';
+
+import Text from './Text.astro';
+import PageLayout from './PageLayout.astro';
+import Price from './Price.astro';
+import Stack from './Stack.astro';
+import RelatedProducts from './RelatedProducts.astro';
+import Button from './Button.astro';
+
+export type Props = SnipcartProductWithProductMeta & {
+    readonly relatedProducts?: readonly SnipcartProductWithProductMeta[];
+};
+
+const { id, name, description, image, price, originalPrice, currency, relatedProducts } = Astro.props as Props;
+const product = Astro.props as SnipcartProduct & ProductMeta;
+---
+<div class="mb:md-0 mb-6 md:col-5 false">
+    <img class="mt-1.5" src={ image }>
+</div>
+<div class="mb:md-0 mb-6 md:col-6 false">
+    <div class="space-y-4">
+        <div class="space-y-2">
+            <Text
+                as="h1"
+                size="xlarge"
+                weight="strong"
+                tracking="tighter">
+                { name }
+            </Text>
+            <Price
+                currency={ currency }
+                price={ price }
+                size="large"
+                originalPrice={ originalPrice } />
+        </div>
+        <div class="flex flex-grow">
+            <Product { ...product }>
+                <Button>
+                    Buy
+                </Button>
+            </Product>
+        </div>
+        <div class="prose">
+            <slot />
+        </div>
+    </div>
+</div>
+<RelatedProducts
+    products={ relatedProducts }
+    currency={ currency } 
+/>

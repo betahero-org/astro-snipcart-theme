@@ -1,0 +1,53 @@
+{
+  "name": "@betahero-org/astro-snipcart-theme",
+  "description": "",
+  "version": "0.1.0",
+  "keywords": [
+    "astro-component"
+  ],
+  "author": "Damien Wright",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./astro": "./astro.ts"
+  },
+  "files": [
+    "src",
+    "index.ts",
+    "astro.ts",
+    "assets"
+  ],
+  "devDependencies": {
+    "@types/chai": "^4.3.3",
+    "@types/eslint": "^8.4.6",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^18.7.16",
+    "@types/prettier": "^2.7.0",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
+    "astro": "^1.1.7",
+    "astro-component-tester": "^0.6.0",
+    "chai": "^4.3.6",
+    "clsx": "^1.2.1",
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "mocha": "^10.0.0",
+    "prettier": "^2.7.1",
+    "prettier-plugin-astro": "^0.5.4",
+    "typescript": "^4.8.3"
+  },
+  "peerDependencies": {
+    "astro": "^1.0.0-beta.0"
+  },
+  "dependencies": {
+    "@lloydjatkinson/astro-snipcart": "0.2.0"
+  },
+  "scripts": {
+    "test": "mocha --parallel --timeout 15000",
+    "format": "prettier -w .",
+    "lint": "eslint . --ext .ts,.js"
+  }
+}

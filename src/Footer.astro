@@ -1,0 +1,36 @@
+---
+import { PageLink } from './types';
+
+import Text from './Text.astro';
+import Link from './Link.astro';
+import Stack from './Stack.astro';
+
+export interface Props {
+    readonly storeName: string;
+    readonly links?: readonly PageLink[];
+    // readonly socialMediaLinks?: readonly PageLink[];
+}
+
+const { storeName, links = [] } = Astro.props as Props; 
+---
+<footer class="bg-white pt-10 md:pt-20">
+  <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+    <nav aria-label="Footer">
+        <Stack
+            direction="horizontal"
+            justfiyContent="center"
+            wrap="wrap">
+            {
+                links.map((link) => (
+                    <Link to={ link.to }>
+                        <Text tone="passive">
+                            { link.label }
+                        </Text>
+                    </Link>
+                ))
+            }
+        </Stack>
+    </nav>
+    <p class="mt-8 text-center text-base text-gray-400">&copy; { storeName } { new Date().getFullYear() }</p>
+  </div>
+</footer>

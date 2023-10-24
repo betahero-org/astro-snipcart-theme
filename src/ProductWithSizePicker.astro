@@ -1,0 +1,116 @@
+---
+import { Element, SnipcartProduct, buildCustomFieldAttributes, buildAttributes } from '@lloydjatkinson/astro-snipcart';
+import Stack from './Stack.astro';
+import ExperimentalStack from './ExperimentalStack.astro';
+import Button from './Button.astro';
+import Text from './Text.astro';
+
+export type Props = Element & SnipcartProduct & {
+    readonly sizes: readonly string[];
+}
+
+const {
+    as: Element = 'div',
+    id,
+    name,
+    price,
+    url,
+    description,
+    image,
+    categories = [],
+    metadata,
+    fileGuid,
+    quantity,
+    minimumQuantity,
+    maximumQuantity,
+    quantityStep,
+    dimensions,
+    customFields = [],
+    stackable,
+    shippable,
+    taxable,
+    taxes,
+    hasTaxesIncluded,
+    sizes
+} = Astro.props as Props;
+
+const attributes = buildAttributes({
+    id,
+    name,
+    price,
+    url,
+    description,
+    image,
+    categories,
+    metadata,
+    fileGuid,
+    quantity,
+    minimumQuantity,
+    maximumQuantity,
+    quantityStep,
+    dimensions,
+    customFields,
+    stackable,
+    shippable,
+    taxable,
+    taxes,
+    hasTaxesIncluded,
+});
+---
+<div x-data=`{ sizes: ${JSON.stringify(sizes)}, selected: '${sizes[0]}' }`>
+    <Stack
+        gap={{
+        mobile: 'small',
+        tablet: 'small',
+        desktop: 'small'
+    }}>
+        <fieldset class="mt-2">
+            <legend class="sr-only">Choose a size</legend>
+            <Stack
+                direction="horizontal"
+                wrap="wrap"
+                gap={{
+                    mobile: 'small',
+                    tablet: 'small',
+                    desktop: 'small'
+                }}>
+                    {
+                        sizes.map((name) => (
+                            <label
+                                class="border border-black px-4 py-2 flex flex-1 items-center justify-center cursor-pointer outline-none ring-0"
+                                :class={ `selected === '${name}' ? 'bg-neutral-200' : '' `}>
+                                <input
+                                    type="radio"
+                                    name="size-choice"
+                                    value={ name }
+                                    class="sr-only"
+                                    x-model="selected">
+                                <p class="sr-only">{ name }</p>
+                                <Text as="span">
+                                    { name }
+                                </Text>
+                            </label>
+                        ))
+                    }
+            </Stack>
+        </fieldset>
+
+        <Element
+            class="snipcart-add-item"
+            { ...attributes }
+            {
+                ...buildCustomFieldAttributes([
+                    {
+                        name: 'Size',
+                        options: sizes,
+                        value: sizes[0],
+                    }
+                ]) 
+            }
+            :data-item-custom1-value="selected">
+            <Button fullWidth>
+                Buy
+            </Button>
+        </Element>
+    </Stack>
+</div>

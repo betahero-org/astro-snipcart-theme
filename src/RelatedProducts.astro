@@ -1,0 +1,34 @@
+---
+import { ProductMeta, SnipcartProduct, SnipcartProductWithProductMeta } from '@lloydjatkinson/astro-snipcart';
+
+import { Element } from './types';
+import Text from './Text.astro';
+import Stack from './Stack.astro';
+import ProductGrid from './ProductGrid.astro';
+import ProductCard from './ProductCard.astro';
+
+export type Props = Element & {
+    readonly currency: string;
+    readonly products: readonly SnipcartProductWithProductMeta[];
+};
+
+const { as: Element = 'div', products = [], currency } = Astro.props as Props;
+---
+{
+    products &&
+    products.length > 0 && 
+    <Element>
+        <Stack>
+            <Text>Customers also purchased</Text>
+            <ProductGrid>
+                {
+                    products.map((product) => (
+                        <ProductCard
+                            currency={ currency }
+                            { ...product } />
+                    ))
+                }
+            </ProductGrid>
+        </Stack>
+    </Element>
+}

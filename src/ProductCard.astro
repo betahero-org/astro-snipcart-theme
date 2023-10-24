@@ -1,0 +1,63 @@
+---
+import { SnipcartProduct, ProductMeta } from '@lloydjatkinson/astro-snipcart';
+import { Product } from '@lloydjatkinson/astro-snipcart/astro';
+import Price from './Price.astro';
+import Text from './Text.astro';
+import Link from './Link.astro';
+import Stack from './Stack.astro';
+import ExperimentalStack from './ExperimentalStack.astro';
+
+import { Element, ProductCard } from './types';
+
+// export type Props = Element & {
+//     readonly title: string;
+//     readonly variants: readonly string[];
+//     readonly formattedPrice: string;
+//     readonly image: string;
+// };
+// const { as: Element = 'div', title, variants, formattedPrice, image } = Astro.props as Props;
+
+export type Props = Element & SnipcartProduct & ProductMeta;
+
+const { as: Element = 'div', id, name, description, image, price, originalPrice, currency, variants } = Astro.props as Props;
+const formattedPrice = new Intl.NumberFormat('en', { style: 'currency', currency: 'GBP' }).format(price);
+const alternativeText = `${ name } - ${ description }`;
+---
+
+<Element>
+    <div class="relative">
+        <div class="w-full min-h-80 aspect-square overflow-hidden lg:h-80">
+            <img src={ image } alt={ alternativeText } class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+        </div>
+        <div class="mt-4">
+            <ExperimentalStack
+                justfiyContent="between"
+                directionExperimental={{
+                    mobile: 'vertical',
+                    tablet: 'horizontal',
+                    desktop: 'horizontal',
+                }}>
+                <div>
+                    <Text
+                        as="h3"
+                        size="small"
+                        tone="informational">
+                        <Link to={ `/products/${id}` }>
+                            <span aria-hidden="true" class="absolute inset-0"></span>
+                            { name }
+                        </Link>
+                    </Text>
+                    <Text
+                        size="small"
+                        tone="passive">
+                        { variants?.join(', ') }
+                    </Text>
+                </div>
+                <Price
+                    price={ price }
+                    originalPrice={ originalPrice }
+                    currency={ currency } />
+            </ExperimentalStack>
+        </div>
+    </div>
+</Element>
