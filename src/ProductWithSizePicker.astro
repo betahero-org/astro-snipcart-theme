@@ -1,9 +1,9 @@
 ---
 import { Element, SnipcartProduct, buildCustomFieldAttributes, buildAttributes } from '@lloydjatkinson/astro-snipcart';
-import Stack from './Stack.astro';
-import ExperimentalStack from './ExperimentalStack.astro';
-import Button from './Button.astro';
-import Text from './Text.astro';
+import Stack from './components/Stack.astro';
+import ExperimentalStack from './components/ExperimentalStack.astro';
+import Button from './components/Button.astro';
+import Text from './components/Text.astro';
 
 export type Props = Element & SnipcartProduct & {
     readonly sizes: readonly string[];

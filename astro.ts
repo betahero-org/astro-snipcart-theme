@@ -1,5 +1,5 @@
-export { default as Stack } from './src/components/Stack.astro';
-
+export { default as Stack } from './src/components/ExperimentalStack.astro';
+export { default as ExperimentalStack } from './src/components/Stack.astro';
 export { default as ProductGrid } from './src/components/ProductGrid.astro';
 export { default as ProductCard } from './src/components/ProductCard.astro';
 

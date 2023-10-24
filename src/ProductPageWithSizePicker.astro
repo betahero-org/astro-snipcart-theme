@@ -4,12 +4,12 @@ import { Product } from '@lloydjatkinson/astro-snipcart/astro';
 
 import ProductWithSizePicker from './ProductWithSizePicker.astro';
 
-import Text from './Text.astro';
+import Text from './components/Text.astro';
 import PageLayout from './PageLayout.astro';
-import Price from './Price.astro';
-import Stack from './Stack.astro';
-import Button from './Button.astro';
-import RelatedProducts from './RelatedProducts.astro';
+import Price from './components/Price.astro';
+import Stack from './components/Stack.astro';
+import Button from './components/Button.astro';
+import RelatedProducts from './components/RelatedProducts.astro';
 
 export type Props = SnipcartProductWithProductMeta & {
     readonly relatedProducts?: readonly SnipcartProductWithProductMeta[];
