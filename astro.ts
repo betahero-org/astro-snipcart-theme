@@ -1,4 +1,4 @@
-export { default as Stack } from './src/Stack.astro';
+export { default as Stack } from './src/component/Stack.astro';
 
 export { default as ProductGrid } from './src/component/ProductGrid.astro';
 export { default as ProductCard } from './src/component/ProductCard.astro';
